@@ -21,7 +21,7 @@
     <ProjectGuid>{BFC0EB62-2AE6-4C4C-A1E5-388A0D92A0D1}</ProjectGuid>
     <RootNamespace>VideodrommSpoutInNdiOut</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -111,7 +111,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\include;"..\..\..\Cinder\include";..\..\..\Cinder\blocks\Cinder-NDI\include;..\..\..\Cinder\blocks\Cinder-NDI\ndisdk\include;..\..\..\Cinder\blocks\Cinder-Spout\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;..\..\..\Cinder\include;..\..\..\Cinder\blocks\Cinder-NDI\include;..\..\..\Cinder\blocks\Cinder-NDI\ndisdk\include;..\blocks\Spout\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -124,7 +124,7 @@
       <AdditionalIncludeDirectories>"..\..\..\Cinder\include";..\include</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>cinder.lib;OpenGL32.lib;%(AdditionalDependencies);..\..\..\Cinder\blocks\Cinder-NDI\ndisdk\lib\$(PlatformTarget)\Processing.NDI.Lib.x64.lib;..\..\..\Cinder\blocks\Cinder-Spout\lib\Spout64.lib</AdditionalDependencies>
+      <AdditionalDependencies>cinder.lib;OpenGL32.lib;%(AdditionalDependencies);..\..\..\Cinder\blocks\Cinder-NDI\ndisdk\lib\$(PlatformTarget)\Processing.NDI.Lib.x64.lib;..\blocks\Spout\lib\Spout.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>"..\..\..\Cinder\lib\msw\$(PlatformTarget)";"..\..\..\Cinder\lib\msw\$(PlatformTarget)\$(Configuration)\$(PlatformToolset)"</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -134,8 +134,8 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "..\..\..\Cinder\blocks\Cinder-NDI\ndisdk\bin\$(PlatformTarget)\Processing.NDI.Lib.x64.dll" "$(OutDir)"
-xcopy /y "..\..\..\Cinder\blocks\Cinder-Spout\lib\Spout64.dll" "$(OutDir)"Spout.dll
-xcopy /y "..\..\..\Cinder\blocks\Cinder-Spout\lib\SpoutPanel.exe" "$(OutDir)"</Command>
+xcopy /y "..\blocks\Spout\lib\Spout.dll" "$(OutDir)"Spout.dll
+xcopy /y "..\blocks\Spout\lib\SpoutPanel.exe" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -174,7 +174,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\include;"..\..\..\Cinder\include";..\..\..\Cinder\blocks\Cinder-NDI\include;..\..\..\Cinder\blocks\Cinder-NDI\ndisdk\include;..\..\..\Cinder\blocks\Cinder-Spout\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;..\..\..\Cinder\include;..\..\..\Cinder\blocks\Cinder-NDI\include;..\..\..\Cinder\blocks\Cinder-NDI\ndisdk\include;..\blocks\Spout\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader />
@@ -189,7 +189,7 @@
       <AdditionalIncludeDirectories>"..\..\..\Cinder\include";..\include</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>cinder.lib;OpenGL32.lib;%(AdditionalDependencies);..\..\..\Cinder\blocks\Cinder-NDI\ndisdk\lib\$(PlatformTarget)\Processing.NDI.Lib.x64.lib;..\..\..\Cinder\blocks\Cinder-Spout\lib\Spout64.lib</AdditionalDependencies>
+      <AdditionalDependencies>cinder.lib;OpenGL32.lib;%(AdditionalDependencies);..\..\..\Cinder\blocks\Cinder-NDI\ndisdk\lib\$(PlatformTarget)\Processing.NDI.Lib.x64.lib;..\blocks\Spout\lib\Spout.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>"..\..\..\Cinder\lib\msw\$(PlatformTarget)";"..\..\..\Cinder\lib\msw\$(PlatformTarget)\$(Configuration)\$(PlatformToolset)"</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <GenerateMapFile>true</GenerateMapFile>
@@ -201,8 +201,8 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "..\..\..\Cinder\blocks\Cinder-NDI\ndisdk\bin\$(PlatformTarget)\Processing.NDI.Lib.x64.dll" "$(OutDir)"
-xcopy /y "..\..\..\Cinder\blocks\Cinder-Spout\lib\Spout64.dll" "$(OutDir)"Spout.dll
-xcopy /y "..\..\..\Cinder\blocks\Cinder-Spout\lib\SpoutPanel.exe" "$(OutDir)"</Command>
+xcopy /y "..\blocks\Spout\lib\Spout.dll" "$(OutDir)"Spout.dll
+xcopy /y "..\blocks\Spout\lib\SpoutPanel.exe" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
