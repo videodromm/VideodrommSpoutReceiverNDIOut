@@ -46,6 +46,8 @@
 // UI
 #define IMGUI_DISABLE_OBSOLETE_FUNCTIONS 1
 #include "VDUI.h"
+// once per exe: dedicated GPU exports, process priority, 1 ms timer
+#include "VDLivePriority.h"
 // imgui.h already defines this (pulled in transitively) - redefining it unconditionally
 // triggers "warning C4005: redéfinition de macro" on every build
 #ifndef IM_ARRAYSIZE
@@ -204,8 +206,13 @@ void VDSpoutInNdiOutApp::mouseDown(MouseEvent event)
 		return;
 	}
 #if defined( CINDER_MSW )
-	// SpoutPanel.exe must be in the executable folder
-	mSpoutIn.getSpoutReceiver().SelectSenderPanel(); // DirectX 11 by default
+	// right-click outside the UI panels picks the Spout sender (any click used to open it,
+	// including clicks meant for the ImGui panels or the warp editor)
+	if (event.isRight() && !ImGui::GetIO().WantCaptureMouse) {
+		// SpoutPanel.exe must be in the executable folder
+		mSpoutIn.getSpoutReceiver().SelectSenderPanel(); // DirectX 11 by default
+		return;
+	}
 #endif
 	if (!mVDSessionFacade->handleMouseDown(event)) {
 		
@@ -498,6 +505,8 @@ void VDSpoutInNdiOutApp::draw()
 }
 void prepareSettings(App::Settings *settings)
 {
+	// live performance: this app first, the others are helpers (VDLivePriority.h)
+	videodromm::applyLivePriority();
 	settings->setWindowSize(1280, 720);
 	settings->setHighDensityDisplayEnabled(true);
 }

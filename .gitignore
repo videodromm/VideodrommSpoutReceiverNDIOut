@@ -186,3 +186,6 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
+# Visual Studio local cache (IntelliSense db, per-user state)
+.vs/
